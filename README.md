@@ -13,5 +13,5 @@ through the use of the external service Teleport
 
 ## Contact 
 * Rafik Zaied - rafik.zaied96@gmail.com
-* Github - https://github.com/Rafik-Zaied/counter-js
+* Github - https://github.com/Rafik-Zaied/city-scores
 * Website - https://rafik-zaied-city-scores.netlify.app/
