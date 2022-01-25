@@ -38,7 +38,7 @@ function autocompleteUserInput() {
         citiesHtml.push(`<li class="autocomplete-item" id="autocomplete-item">${city}</li>`);
       }
     });
-    autocomplete.innerHTML = citiesHtml.slice(0, 4).join("");
+    ErrorMessage.innerHTML = citiesHtml.slice(0, 4).join("");
   } else autocomplete.innerHTML = "";
 }
 
