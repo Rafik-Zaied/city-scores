@@ -123,7 +123,7 @@ function displaycityData(cityData) {
   scoreDisplay.textContent = `Overall score ${cityScore.toFixed(2)}`;
 }
 
-userInput.addEventListener("input", autocompleteUserInput);
+userInput.addEventListener("keyup", autocompleteUserInput);
 userInput.addEventListener("click", autocompleteUserInput);
 document.addEventListener("click", () => (autocomplete.innerHTML = ""));
 formSearchBar.addEventListener("submit", onSubmit);
