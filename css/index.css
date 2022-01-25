@@ -57,7 +57,7 @@ body {
 
 .searchbar {
   margin: 0 auto;
-  max-width: 95%;
+  max-width: 90%;
   position: relative;
 }
 
@@ -99,7 +99,7 @@ body {
 }
 
 .city-data-section {
-  max-width: 95%;
+  max-width: 90%;
   margin: 2em auto;
 }
 
