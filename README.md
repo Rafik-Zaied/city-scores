@@ -13,4 +13,4 @@ through the use of the Teleport API
 ## Contact 
 * Rafik Zaied - rafik.zaied96@gmail.com
 * Github - https://github.com/Rafik-Zaied/city-scores
-* Website - https://city-scores.netlify.app/
+* Website - https://cityscores.netlify.app/
