@@ -34,7 +34,7 @@ function autocompleteUserInput() {
   if (userInput.value != "" && userInput === document.activeElement) {
     let citiesHtml = [];
     cities.forEach((city) => {
-      if (city.toLowerCase().includes(userInput.value)) {
+      if (city.toLowerCase().includes(userInput.value.toLowerCase())) {
         citiesHtml.push(`<li class="autocomplete-item" id="autocomplete-item">${city}</li>`);
       }
     });
