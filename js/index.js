@@ -23,7 +23,8 @@ function loadCities() {
     .then((response) => response.json())
     .then((data) => {
       data._links["ua:item"].forEach((city) => cities.push(city.name));
-    });
+    })
+    .catch((error) => (ErrorMessage.textContent = "Network Error, service cureently unavailable"));
 }
 
 loadCities();
@@ -63,11 +64,7 @@ function onSubmit(e) {
 }
 
 async function startSearch() {
-  let city = userInput.value
-    .toLowerCase()
-    .replaceAll(" ", "-")
-    .replaceAll(",", "")
-    .replaceAll(".", "");
+  let city = userInput.value.toLowerCase().replaceAll(" ", "-").replaceAll(",", "").replaceAll(".", "");
 
   try {
     photo = await fetchPhoto(city);
@@ -81,7 +78,7 @@ async function startSearch() {
 }
 
 async function fetchPhoto(city) {
-  let photoUrl = new URL(`https://api.teleport.org/api/urban_areas/slug:${city}/images/`);
+  let photoUrl = new URL(`https://api.teleport.org/api/urban_ares/slug:${city}/images/`);
   try {
     let response = await fetch(photoUrl);
     let photo = await response.json();
@@ -114,9 +111,7 @@ function displaycityData(cityData) {
   summaryDisplay.innerHTML = summary;
   categoriesDisplay.innerHTML = categories
     .map((category) => {
-      return `<li class="city-data-categorie">${category.name}: ${Math.floor(
-        category.score_out_of_10
-      )}/10</li>`;
+      return `<li class="city-data-categorie">${category.name}: ${Math.floor(category.score_out_of_10)}/10</li>`;
     })
     .join("");
 
