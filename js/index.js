@@ -20,11 +20,16 @@ const scoreDisplay = get("#city-data-score");
 
 function loadCities() {
   fetch(`https://api.teleport.org/api/urban_areas/`)
-    .then((response) => response.json())
+    .then((response) => {
+      if (response.ok) {
+        response.json();
+      }
+      throw new Error("fetch error");
+    })
     .then((data) => {
       data._links["ua:item"].forEach((city) => cities.push(city.name));
     })
-    .catch((error) => (ErrorMessage.textContent = "Network Error, service cureently unavailable"));
+    .catch((error) => (ErrorMessage.textContent = "Network Error, service currently unavailable"));
 }
 
 loadCities();
@@ -56,7 +61,6 @@ function onSubmit(e) {
   e.preventDefault();
   if (userInput.value === "" || userInput.value === " ") {
     ErrorMessage.textContent = "Type something to start the search!";
-    console.log("submitted");
   } else {
     ErrorMessage.textContent = "";
     startSearch();
