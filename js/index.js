@@ -18,18 +18,19 @@ const summaryDisplay = get("#city-data-summary");
 const categoriesDisplay = get("#city-data-categories");
 const scoreDisplay = get("#city-data-score");
 
-function loadCities() {
-  fetch(`https://api.teleport.org/api/urban_areas/`)
-    .then((response) => {
-      if (response.ok) {
-        response.json();
-      }
-      throw new Error("fetch error");
-    })
-    .then((data) => {
+async function loadCities() {
+  try {
+    let response = await fetch(`https://api.teleport.org/api/urban_areas/`);
+    let data = await response.json();
+    if (response.status != 404) {
+      console.log(response.status);
       data._links["ua:item"].forEach((city) => cities.push(city.name));
-    })
-    .catch((error) => (ErrorMessage.textContent = "Network Error, service currently unavailable"));
+    } else {
+      throw new Error("fetch");
+    }
+  } catch (error) {
+    ErrorMessage.textContent = "Network Error";
+  }
 }
 
 loadCities();
@@ -82,25 +83,19 @@ async function startSearch() {
 }
 
 async function fetchPhoto(city) {
-  let photoUrl = new URL(`https://api.teleport.org/api/urban_ares/slug:${city}/images/`);
-  try {
-    let response = await fetch(photoUrl);
-    let photo = await response.json();
-    if (response.status != 404) return photo;
-  } catch (error) {
-    throw new Error("fetch");
-  }
+  let photoUrl = new URL(`https://api.teleport.org/api/urban_areas/slug:${city}/images/`);
+  let response = await fetch(photoUrl);
+  let photo = await response.json();
+  if (response.status != 404) return photo;
+  else throw new Error("fetch");
 }
 
 async function fetchData(city) {
   let cityDataUrl = new URL(`https://api.teleport.org/api/urban_areas/slug:${city}/scores/`);
-  try {
-    let response = await fetch(cityDataUrl);
-    let cityData = response.json();
-    if (response.status != 404) return cityData;
-  } catch (error) {
-    throw new Error("fetch");
-  }
+  let response = await fetch(cityDataUrl);
+  let cityData = response.json();
+  if (response.status != 404) return cityData;
+  else throw new Error("fetch");
 }
 
 function displayPhoto(photo) {
